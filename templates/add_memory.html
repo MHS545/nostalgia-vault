@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Memory - Memory Vault{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center fade-in">
+  <div class="col-lg-8 col-md-10">
+    <div class="text-center mb-4">
+      <h1 class="display-heading mb-2">Create New Memory</h1>
+      <p class="text-secondary italic">Write down your moment and upload a photograph to preserve it forever.</p>
+    </div>
+
+    <div class="form-vintage">
+      <form action="{{ url_for('add_memory') }}" method="POST" enctype="multipart/form-data" id="memoryForm">
+        
+        <!-- Memory Title -->
+        <div class="mb-4">
+          <label for="title" class="form-label-vintage">
+            <i class="fa-solid fa-heading me-1 text-muted"></i> Memory Title <span class="text-danger">*</span>
+          </label>
+          <input type="text" 
+                 class="form-control form-control-vintage" 
+                 id="title" 
+                 name="title" 
+                 placeholder="e.g. Summer Sunset in Tuscany" 
+                 required 
+                 maxlength="150"
+                 value="{{ title if title else '' }}">
+        </div>
+
+        <!-- Memory Description -->
+        <div class="mb-4">
+          <label for="description" class="form-label-vintage">
+            <i class="fa-solid fa-book-open me-1 text-muted"></i> Memory Description <span class="text-danger">*</span>
+          </label>
+          <textarea class="form-control form-control-vintage" 
+                    id="description" 
+                    name="description" 
+                    rows="4" 
+                    placeholder="Describe what made this moment unforgettable..." 
+                    required>{{ description if description else '' }}</textarea>
+        </div>
+
+        <!-- Image Upload Field & Live Preview -->
+        <div class="mb-4">
+          <label for="image" class="form-label-vintage">
+            <i class="fa-solid fa-camera me-1 text-muted"></i> Upload Image Photograph <span class="text-danger">*</span>
+          </label>
+          <input type="file" 
+                 class="form-control form-control-vintage" 
+                 id="image" 
+                 name="image" 
+                 accept="image/jpeg,image/png,image/gif,image/webp" 
+                 required>
+          <div class="form-text text-muted" style="font-size: 0.82rem;">
+            Supported formats: JPG, PNG, GIF, WEBP. Max size: 16MB.
+          </div>
+
+          <!-- Live Image Preview Box -->
+          <div class="image-preview-container mt-3">
+            <div id="preview-placeholder" class="image-preview-placeholder">
+              <i class="fa-solid fa-image fs-1 mb-2"></i>
+              <p class="mb-0">Selected image preview will appear here</p>
+            </div>
+            <img id="image-preview" src="#" alt="Selected Memory Preview">
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-between align-items-center mt-4 pt-2">
+          <a href="{{ url_for('index') }}" class="btn btn-vintage-outline">
+            <i class="fa-solid fa-arrow-left me-1"></i> Cancel
+          </a>
+          <button type="submit" class="btn btn-vintage px-4">
+            <i class="fa-solid fa-cloud-arrow-up me-1"></i> Save Memory
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
