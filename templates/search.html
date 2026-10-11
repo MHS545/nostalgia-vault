@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Memories - Memory Vault{% endblock %}
+
+{% block content %}
+<!-- Search Header -->
+<div class="text-center mb-4 fade-in">
+  <h1 class="display-heading mb-2">Search Memory Vault</h1>
+  <p class="text-secondary">Filter past journal moments by title or description keywords.</p>
+</div>
+
+<!-- Centered Search Box -->
+<div class="search-box-wrap fade-in" style="animation-delay: 0.1s;">
+  <form action="{{ url_for('search_memories') }}" method="GET">
+    <div class="search-input-group">
+      <i class="fa-solid fa-magnifying-glass search-icon-inside"></i>
+      <input type="text" 
+             name="q" 
+             class="form-control form-control-vintage" 
+             placeholder="Search by title or description keyword..." 
+             value="{{ query if query else '' }}" 
+             required>
+      <button type="submit" class="btn btn-vintage position-absolute end-0 me-1" style="border-radius: 24px; padding: 0.5rem 1.4rem;">
+        Search
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Search Results Grid -->
+{% if query %}
+  <div class="mb-3 text-center text-muted fade-in">
+    Showing results for: <strong class="text-primary">"{{ query }}"</strong>
+  </div>
+
+  {% if memories %}
+  <div class="row g-4 fade-in" style="animation-delay: 0.15s;">
+    {% for memory in memories %}
+    <div class="col-lg-4 col-md-6">
+      <div class="card-vintage memory-card h-100">
+        <div class="memory-card-img-wrap">
+          <img src="{{ memory.image_url }}" alt="{{ memory.title }}" loading="lazy">
+        </div>
+        <div class="memory-card-body d-flex flex-column justify-content-between mt-2">
+          <div>
+            <h3 class="memory-card-title">{{ memory.title }}</h3>
+            <div class="memory-card-date">
+              <i class="fa-regular fa-calendar-days me-1"></i> 
+              {{ memory.created_at.strftime('%B %d, %Y • %I:%M %p') }}
+            </div>
+            <p class="memory-card-desc">{{ memory.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <!-- Friendly Empty Search State -->
+  <div class="empty-state fade-in">
+    <div class="empty-state-icon">
+      <i class="fa-solid fa-magnifying-glass-location"></i>
+    </div>
+    <h3 class="h4 mb-2">No Matching Memories Found</h3>
+    <p class="text-secondary mb-4">We couldn't find any memories matching "<strong>{{ query }}</strong>". Try searching for different keywords or titles.</p>
+    <a href="{{ url_for('view_memories') }}" class="btn-vintage">
+      <i class="fa-solid fa-images me-1"></i> View All Memories
+    </a>
+  </div>
+  {% endif %}
+{% endif %}
+{% endblock %}

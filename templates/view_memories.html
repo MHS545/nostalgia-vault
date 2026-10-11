@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}View Memories - Memory Vault{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 fade-in">
+  <div>
+    <h1 class="display-heading mb-1">Stored Memories</h1>
+    <p class="text-secondary mb-0">Your journal gallery, ordered chronologically (newest first).</p>
+  </div>
+  <div>
+    <a href="{{ url_for('add_memory') }}" class="btn-vintage">
+      <i class="fa-solid fa-plus me-1"></i> Add Memory
+    </a>
+  </div>
+</div>
+
+{% if memories %}
+<div class="row g-4 fade-in" style="animation-delay: 0.15s;">
+  {% for memory in memories %}
+  <div class="col-lg-4 col-md-6">
+    <div class="card-vintage memory-card h-100">
+      <!-- Polaroid Image Wrap -->
+      <div class="memory-card-img-wrap">
+        <img src="{{ memory.image_url }}" alt="{{ memory.title }}" loading="lazy">
+      </div>
+      <!-- Card Body -->
+      <div class="memory-card-body d-flex flex-column justify-content-between mt-2">
+        <div>
+          <h3 class="memory-card-title">{{ memory.title }}</h3>
+          <div class="memory-card-date">
+            <i class="fa-regular fa-calendar-days me-1"></i> 
+            {{ memory.created_at.strftime('%B %d, %Y • %I:%M %p') }}
+          </div>
+          <p class="memory-card-desc">{{ memory.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<!-- Empty State -->
+<div class="empty-state fade-in">
+  <div class="empty-state-icon">
+    <i class="fa-solid fa-box-open"></i>
+  </div>
+  <h3 class="h4 mb-2">No Memories Found</h3>
+  <p class="text-secondary mb-4">Your memory vault is currently empty. Start by adding your first memorable moment!</p>
+  <a href="{{ url_for('add_memory') }}" class="btn-vintage">
+    <i class="fa-solid fa-plus me-1"></i> Add Your First Memory
+  </a>
+</div>
+{% endif %}
+{% endblock %}

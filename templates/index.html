@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Memory Vault{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-vintage fade-in">
+  <div class="hero-subtitle-tag">Personal Digital Journal</div>
+  <h1 class="hero-title">Welcome to<br><span style="color: var(--accent-brown);">MEMORY VAULT</span></h1>
+  <p class="hero-description">
+    A safe place for your memories. Store, revisit, and cherish your special moments forever.
+  </p>
+</section>
+
+<!-- Dashboard: 3 Feature Cards -->
+<section class="mb-5 fade-in" style="animation-delay: 0.15s;">
+  <div class="row g-4">
+    
+    <!-- 1. Add Memory Card -->
+    <div class="col-md-4">
+      <div class="card-vintage dashboard-card">
+        <div>
+          <div class="dashboard-icon-wrap">
+            <i class="fa-solid fa-pen-nib"></i>
+          </div>
+          <h3 class="h4 mb-3">Add Memory</h3>
+          <p class="text-secondary mb-4 fs-6">
+            Capture a new moment by uploading your photograph alongside a title and personal journal description.
+          </p>
+        </div>
+        <div>
+          <a href="{{ url_for('add_memory') }}" class="btn-vintage w-100">
+            <i class="fa-solid fa-plus me-1"></i> Add New Memory
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. View Memories Card -->
+    <div class="col-md-4">
+      <div class="card-vintage dashboard-card">
+        <div>
+          <div class="dashboard-icon-wrap">
+            <i class="fa-solid fa-photo-film"></i>
+          </div>
+          <h3 class="h4 mb-3">View Memories</h3>
+          <p class="text-secondary mb-4 fs-6">
+            Browse through your gallery of stored polaroids and timeline notes, arranged chronologically.
+          </p>
+        </div>
+        <div>
+          <a href="{{ url_for('view_memories') }}" class="btn-vintage w-100">
+            <i class="fa-solid fa-book-open me-1"></i> Explore Memories
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Search Memory Card -->
+    <div class="col-md-4">
+      <div class="card-vintage dashboard-card">
+        <div>
+          <div class="dashboard-icon-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <h3 class="h4 mb-3">Search Memory</h3>
+          <p class="text-secondary mb-4 fs-6">
+            Instantly locate past memories by searching titles or keyword phrases in your journal entry descriptions.
+          </p>
+        </div>
+        <div>
+          <a href="{{ url_for('search_memories') }}" class="btn-vintage w-100">
+            <i class="fa-solid fa-search me-1"></i> Search Vault
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
