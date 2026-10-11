@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <!-- Vintage Camera Body -->
+  <rect x="6" y="18" width="52" height="36" rx="6" fill="#5C4033" stroke="#3D2920" stroke-width="3"/>
+  <rect x="6" y="24" width="52" height="6" fill="#8B5A2B" opacity="0.6"/>
+  
+  <!-- Viewfinder Top Housing -->
+  <path d="M22 18 L26 10 H38 L42 18 Z" fill="#422E25" stroke="#3D2920" stroke-width="2"/>
+  <circle cx="48" cy="14" r="3" fill="#D4AF37"/>
+  
+  <!-- Outer Lens Ring -->
+  <circle cx="32" cy="36" r="14" fill="#3D2920" stroke="#D4AF37" stroke-width="2"/>
+  
+  <!-- Inner Lens Glass -->
+  <circle cx="32" cy="36" r="10" fill="#1A120C"/>
+  <circle cx="32" cy="36" r="7" fill="#2E4A62"/>
+  
+  <!-- Lens Reflection -->
+  <ellipse cx="29" cy="33" rx="3" ry="2" fill="#FFFFFF" opacity="0.6" transform="rotate(-30 29 33)"/>
+</svg>
